@@ -1,0 +1,50 @@
+import tkinter as tk
+
+# Conversion functions
+def dollar_to_naira(dollar):
+    return dollar * 1500   # Example rate (adjust as needed)
+
+def dollar_to_pound(dollar):
+    return dollar * 0.79   # Example rate
+
+def dollar_to_euro(dollar):
+    return dollar * 0.92   # Example rate
+
+# Function to handle conversion
+def convert():
+    try:
+        amount = float(entry.get())
+        naira = dollar_to_naira(amount)
+        pound = dollar_to_pound(amount)
+        euro = dollar_to_euro(amount)
+
+        result_label.config(text=f"""
+{amount:.2f} $ =
+{naira:.2f} Naira
+{pound:.2f} Pound
+{euro:.2f} Euro
+""")
+    except ValueError:
+        result_label.config(text="Please enter a valid number!")
+
+# Main Tkinter window
+root = tk.Tk()
+root.title("Dollar Converter")
+root.geometry("300x250")
+root.config(bg="lightblue")
+
+# Widgets
+title = tk.Label(root, text="Dollar Converter", font=("Arial", 14, "bold"), bg="lightblue")
+title.pack(pady=10)
+
+entry = tk.Entry(root, font=("Arial", 12))
+entry.pack(pady=5)
+
+convert_btn = tk.Button(root, text="Convert", command=convert, font=("Arial", 12), bg="green", fg="white")
+convert_btn.pack(pady=10)
+
+result_label = tk.Label(root, text="", font=("Arial", 12), bg="lightblue", justify="left")
+result_label.pack(pady=10)
+
+# Run the window
+root.mainloop()
