@@ -1,0 +1,48 @@
+import tkinter as tk
+from tkinter import scrolledtext
+
+# chatbot response function
+def chatbot_response():
+    user_input = entry.get().strip().lower()
+    chat_area.insert(tk.END, "You: " + entry.get() + "\n")
+
+    if user_input == "hello":
+        response = "Hi, how are you?"
+    elif user_input == "who is the president of nigeria":
+        response = "The president of Nigeria is Bola Ahmed Tinubu."
+    elif user_input == "thank you":
+        response = "You are welcome."
+    elif user_input == "can i ask you another question":
+        response = "Sure, go on."
+    elif user_input == "who is the best person in the world":
+        response = "It is Prophet Muhammad (S.A.W)."
+    elif user_input == "thank you once again":
+        response = "You are welcome."
+    else:
+        response = "Nice to meet you."
+
+    chat_area.insert(tk.END, "Bot: " + response + "\n\n")
+    entry.delete(0, tk.END)
+
+
+# main window
+root = tk.Tk()
+root.title("Simple Chatbot")
+root.geometry("400x500")
+
+# chat display area
+chat_area = scrolledtext.ScrolledText(root, wrap=tk.WORD, width=50, height=20, state="normal")
+chat_area.pack(pady=10)
+
+# input box
+entry = tk.Entry(root, width=40)
+entry.pack(side=tk.LEFT, padx=10, pady=5)
+
+# send button
+send_btn = tk.Button(root, text="Send", command=chatbot_response)
+send_btn.pack(side=tk.LEFT, pady=5)
+
+# welcome message
+chat_area.insert(tk.END, "Bot: Welcome, how can I help you?\n\n")
+
+root.mainloop()
